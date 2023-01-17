@@ -9,7 +9,7 @@ linkIBGE = requests.get(link).json()
 
 print(linkIBGE)
 
-
+#Determinando as variáveis
 Norte = linkIBGE[0]['resultados'][0]['series'][1]['serie']['2007']
 Norte
 
