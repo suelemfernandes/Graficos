@@ -1,0 +1,69 @@
+import json
+import matplotlib.pyplot as plt
+import numpy as np
+import requests
+
+link = 'https://servicodados.ibge.gov.br/api/v3/agregados/793/periodos/2007/variaveis/93?localidades=N1[all]|N2[all]'  #Copie o código gerado por você.
+
+linkIBGE = requests.get(link).json()
+
+print(linkIBGE)
+
+#Determinando as variáveis
+Norte = linkIBGE[0]['resultados'][0]['series'][1]['serie']['2007']
+Norte
+
+string = "14623316"
+Norte = int(string) 
+print(type(Norte))
+
+print(Norte)
+
+Nordeste = linkIBGE[0]['resultados'][0]['series'][2]['serie']['2007']
+Nordeste
+
+string = "51534406"
+Nordeste = int(string) 
+print(type(Nordeste))
+
+Sudeste = linkIBGE[0]['resultados'][0]['series'][3]['serie']['2007']
+
+Sudeste
+
+string = "77873120"
+Sudeste = int(string) 
+print(type(Sudeste))
+
+Sul = linkIBGE[0]['resultados'][0]['series'][4]['serie']['2007']
+
+Sul
+
+string = "26733595"
+Sul = int(string) 
+print(type(Sul))
+
+CentroOeste = linkIBGE[0]['resultados'][0]['series'][5]['serie']['2007']
+
+CentroOeste
+
+string = "13222854"
+CentroOeste = int(string) 
+print(type(CentroOeste))
+
+fig, ax = plt.subplots()
+
+#Determine os eixos X e Y
+regioes = ['Sudeste', 'Nordeste', 'Sul', 'Norte', 'Centro-Oeste']
+valores = [Sudeste, Nordeste, Sul, Norte, CentroOeste]
+
+#Selecionando as cores
+bar_colors = ['tab:red', 'tab:blue', 'tab:green', 'tab:orange', 'tab:gray']
+
+#Organizando o gráfico - é possível acrescentar cores ao gráfico com color=bar_colors
+ax.bar(regioes, valores, label=regioes)
+ax.set_ylabel('População')
+ax.set_xlabel('Regiões')
+ax.set_title('População Residente por Região', size=15)
+#ax.legend(title='Regiões')
+
+plt.show()
